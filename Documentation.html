@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Documentation.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>This is an ambitious and well-defined project! Let's build a comprehensive documentation and a phased development plan to ensure we cover all aspects.</p>
+<p>We will proceed in three major parts:</p>
+<p><strong>Part 1: Comprehensive Project Documentation</strong></p>
+<ul>
+<li>Project Overview, Context &amp; High-Level Architecture</li>
+<li>Detailed Database Schema</li>
+<li>Role Definitions &amp; Core Functionalities</li>
+<li>Detailed Process Flows</li>
+<li>Spring Boot API Design Guidelines &amp; Comprehensive Endpoint Reference (Type, Input, Output, Access)</li>
+<li>React Native UI Design Guidelines (Role-based UI, Navigation, State Management)</li>
+</ul>
+<p><strong>Part 2: Dummy Database Records (India-based)</strong></p>
+<ul>
+<li>A SQL file with <code>INSERT</code> statements for all tables, populating them with a good amount of India-based data, designed to test various UI scenarios.</li>
+</ul>
+<p><strong>Part 3: React Native Development Phase 1 Instructions</strong></p>
+<ul>
+<li>Detailed instructions for a React Native developer, focusing exclusively on building the UI for both Owner and Member roles using hardcoded dummy data for Phase 1. This will include setup, project structure, component breakdown, and specific screens to implement.</li>
+</ul>
+<hr>
+<h2 id="part-1-comprehensive-project-documentation">Part 1: Comprehensive Project Documentation</h2>
+<h3 id="1-project-overview-context--high-level-architecture">1. Project Overview, Context &amp; High-Level Architecture</h3>
+<p><strong>Project Name:</strong> Library Management System
+<strong>Goal:</strong> To develop a React Native mobile application, backed by a Spring Boot API and MySQL database, to manage library operations, book circulation, and member services with two primary roles: 'Owner' (Librarian/Administrator) and 'Member'.</p>
+<p><strong>Core Business Context:</strong></p>
+<ul>
+<li><strong>Book Management:</strong> Track books, multiple copies, and their physical location (racks).</li>
+<li><strong>User Management:</strong> Manage library members and owner/librarian accounts, including payment status.</li>
+<li><strong>Borrowing/Return:</strong> Facilitate the issue and return of <em>individual book copies</em>.</li>
+<li><strong>Financials:</strong> Manage membership fee collection and overdue fines.</li>
+<li><strong>Reporting:</strong> Provide comprehensive reports for Owners on user activity, book inventory, and financial performance.</li>
+<li><strong>Key Rules:</strong>
+<ul>
+<li>Books can only be borrowed by <code>is_paid_member</code> users.</li>
+<li>Payments are collected by the Librarian/Owner by simply toggling a boolean flag.</li>
+<li>Borrowing period is 7 days.</li>
+<li>Fine is Rs. 5/- per day <em>after</em> the due date.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Technical Stack:</strong></p>
+<ul>
+<li><strong>Frontend:</strong> React Native (Mobile Application)</li>
+<li><strong>Backend:</strong> Spring Boot (RESTful API, Java)</li>
+<li><strong>Database:</strong> MySQL (Relational Database)</li>
+<li><strong>Authentication:</strong> JWT (JSON Web Tokens) with Spring Security</li>
+</ul>
+<p><strong>High-Level Architecture:</strong></p>
+<pre class="hljs"><code><div>+---------------------+      REST API      +-----------------------+      JPA/JDBC      +-------------------+
+|                     | &lt;----------------&gt; |                       | &lt;----------------&gt; |                   |
+|  React Native App   |    (HTTP/HTTPS)    |    Spring Boot API    |     (TCP/IP)       |    MySQL Database |
+| (Presentation Layer)|    JSON Payloads   | (Application Layer)   |    SQL Queries     | (Data Layer)      |
+|                     | &lt;----------------&gt; |                       | &lt;----------------&gt; |                   |
++---------------------+                    +-----------------------+                    +-------------------+
+        ^                                            ^                                            ^
+        |                                            |                                            |
+        | User Interaction                           | Business Logic                             | Data Storage
+        | (Member/Owner)                             | (Auth, Role-Based Access, Borrow/Return,   | (Users, Books, Copies,
+        |                                            | Fines, Payments, Reports)                  | Transactions, Fines)
+</div></code></pre>
+<h3 id="2-detailed-database-schema">2. Detailed Database Schema</h3>
+<p>Based on the provided DDL and ER Diagram:</p>
+<ul>
+<li>
+<p><strong><code>Members</code> Table:</strong></p>
+<ul>
+<li><code>id</code> (INT, PK, AUTO_INCREMENT): Unique identifier for each member/owner.</li>
+<li><code>name</code> (VARCHAR(255), NOT NULL): Full name of the user.</li>
+<li><code>email</code> (VARCHAR(255), NOT NULL, UNIQUE): User's email address, used for login, must be unique.</li>
+<li><code>phone</code> (VARCHAR(20)): User's phone number.</li>
+<li><code>password_hash</code> (VARCHAR(255), NOT NULL): Stores the securely hashed password (e.g., BCrypt).</li>
+<li><code>role</code> (VARCHAR(50), NOT NULL): Defines user's role ('MEMBER', 'OWNER').</li>
+<li><code>is_paid_member</code> (BOOLEAN, DEFAULT FALSE): <em>Added for the specific project requirement.</em> Indicates if a member is currently paid and eligible to borrow.</li>
+<li><code>last_payment_date</code> (DATETIME): <em>Added for the specific project requirement.</em> To track when the last payment was recorded for a member.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>Books</code> Table:</strong></p>
+<ul>
+<li><code>id</code> (INT, PK, AUTO<em>INCREMENT): Unique identifier for a book _title</em>.</li>
+<li><code>title</code> (VARCHAR(255), NOT NULL): Title of the book.</li>
+<li><code>author</code> (VARCHAR(255), NOT NULL): Author(s) of the book.</li>
+<li><code>genre</code> (VARCHAR(100)): Subject/Genre of the book (e.g., 'Programming', 'Science').</li>
+<li><code>price</code> (DECIMAL(10, 2)): Original acquisition price or valuation.</li>
+<li><code>isbn</code> (VARCHAR(20), NOT NULL, UNIQUE): International Standard Book Number, unique for each book title.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>Copies</code> Table:</strong></p>
+<ul>
+<li><code>id</code> (INT, PK, AUTO<em>INCREMENT): Unique identifier for a _specific physical copy</em> of a book.</li>
+<li><code>bookid</code> (INT, FK): Foreign key referencing <code>Books.id</code>. Identifies which book title this copy belongs to.</li>
+<li><code>rack</code> (INT): The rack number where the copy is located. <em>Self-correction</em>: For simplicity, this is an INT as per ERD. In a real-world scenario, this might be a FK to a <code>Racks</code> table for more detailed rack management. For now, it's just a number.</li>
+<li><code>status</code> (VARCHAR(50), NOT NULL): Current status of the copy ('AVAILABLE', 'ISSUED', 'LOST', 'DAMAGED').</li>
+<li><code>copy_identifier</code> (VARCHAR(50), NOT NULL, UNIQUE): <em>Added for the specific project requirement</em>. A unique identifier for the physical copy (e.g., a barcode or specific serial). This will be used for manual entry.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>Payments</code> Table:</strong></p>
+<ul>
+<li><code>id</code> (INT, PK, AUTO_INCREMENT): Unique identifier for a payment transaction.</li>
+<li><code>memberid</code> (INT, FK): Foreign key referencing <code>Members.id</code>. The member who made the payment.</li>
+<li><code>amount</code> (DECIMAL(10, 2), NOT NULL): The amount paid.</li>
+<li><code>type</code> (VARCHAR(50), NOT NULL): Type of payment ('MEMBERSHIP_FEE', 'FINE_PAYMENT').</li>
+<li><code>payment_date</code> (DATETIME, NOT NULL): The date and time the payment was made.</li>
+<li><code>due_date</code> (DATETIME): The date the payment was originally due (e.g., for monthly fees).</li>
+</ul>
+</li>
+<li>
+<p><strong><code>IssuerRecord</code> Table (Renamed to <code>BorrowingTransactions</code> for clarity in application logic):</strong></p>
+<ul>
+<li><code>id</code> (INT, PK, AUTO_INCREMENT): Unique identifier for each borrowing transaction.</li>
+<li><code>copyid</code> (INT, FK, NOT NULL): Foreign key referencing <code>Copies.id</code>. The specific book copy that was borrowed.</li>
+<li><code>memberid</code> (INT, FK, NOT NULL): Foreign key referencing <code>Members.id</code>. The member who borrowed the copy.</li>
+<li><code>issue_date</code> (DATETIME, NOT NULL): The date and time the book was issued.</li>
+<li><code>due_date</code> (DATETIME, NOT NULL): The date by which the book is expected to be returned (issue_date + 7 days).</li>
+<li><code>return_date</code> (DATETIME): The actual date and time the book was returned (NULL if not yet returned).</li>
+<li><code>fine_amount</code> (DECIMAL(10, 2), DEFAULT 0.00): The fine calculated at the time of return, if any.</li>
+<li><code>status</code> (VARCHAR(50), NOT NULL, DEFAULT 'BORROWED'): <em>Added for application logic</em>. 'BORROWED', 'RETURNED', 'OVERDUE'.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-role-definitions--core-functionalities">3. Role Definitions &amp; Core Functionalities</h3>
+<h4 id="a-roles"><strong>A. Roles:</strong></h4>
+<ol>
+<li>
+<p><strong>Owner (Librarian/Administrator):</strong></p>
+<ul>
+<li><strong>Access:</strong> Full administrative access to the system.</li>
+<li><strong>Key Responsibilities:</strong>
+<ul>
+<li><strong>User Management:</strong> View all users, manage member payment status (toggle <code>is_paid_member</code>), record payments.</li>
+<li><strong>Book &amp; Copy Management:</strong> Add/edit/delete book titles, add/edit/delete individual book copies, assign copies to racks, update copy status (e.g., damaged, lost).</li>
+<li><strong>Library Operations:</strong> Process book issue (manually, as members request) and return of individual copies, calculate and collect fines.</li>
+<li><strong>Monitoring &amp; Reporting:</strong> View comprehensive statistics and reports on:
+<ul>
+<li>User activity (enrollment, active/inactive members, borrowing patterns).</li>
+<li>Book inventory (total books/copies, availability, utilization by subject/title).</li>
+<li>Financial performance (membership fees collected, fines collected, overall revenue, expenses).</li>
+<li>Overdue books.</li>
+<li>Track library assets (valuation of books and other library items).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Member:</strong></p>
+<ul>
+<li><strong>Access:</strong> Limited to personal account information and library book browsing/borrowing.</li>
+<li><strong>Key Responsibilities:</strong>
+<ul>
+<li><strong>Account Management:</strong> View/edit profile, change password.</li>
+<li><strong>Book Discovery:</strong> Search for books by various criteria (title, author, ISBN, subject).</li>
+<li><strong>Book Availability:</strong> Check real-time availability of book copies.</li>
+<li><strong>Borrowing:</strong> Request to borrow an <em>available</em> book copy (only if <code>is_paid_member</code> is TRUE).</li>
+<li><strong>History:</strong> View personal borrowing history (past and current).</li>
+<li><strong>Fines:</strong> View any outstanding fines.</li>
+<li><strong>Payments:</strong> View personal payment history (membership fees, fine payments).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="b-project-functionalities-overview"><strong>B. Project Functionalities Overview:</strong></h4>
+<ul>
+<li><strong>Authentication &amp; Authorization:</strong> Secure login for both roles using JWT. Role-based access control ensuring users only access authorized functionalities.</li>
+<li><strong>User Management:</strong>
+<ul>
+<li>Member self-registration.</li>
+<li>Owner can view, activate/deactivate, and manage member payment status.</li>
+</ul>
+</li>
+<li><strong>Book Inventory:</strong>
+<ul>
+<li>Cataloging book titles (title, author, ISBN, genre, price).</li>
+<li>Managing multiple physical copies per book (unique identifier, rack, status).</li>
+</ul>
+</li>
+<li><strong>Borrowing Process:</strong>
+<ul>
+<li>Member searches for books.</li>
+<li>Member checks availability of specific copies.</li>
+<li>Member requests to borrow a specific copy.</li>
+<li>System checks <code>is_paid_member</code> status.</li>
+<li>If eligible, transaction is recorded, copy status updated.</li>
+</ul>
+</li>
+<li><strong>Return Process:</strong>
+<ul>
+<li>Owner inputs <code>copy_identifier</code> for return.</li>
+<li>System identifies borrowing transaction.</li>
+<li>Calculates overdue days (if any) and fine.</li>
+<li>Updates <code>BorrowingTransaction</code> with <code>return_date</code> and <code>fine_amount</code>.</li>
+<li>Updates <code>Copy</code> status to 'AVAILABLE'.</li>
+<li>If fine applicable, creates a <code>Fine</code> record (or updates fine in transaction).</li>
+</ul>
+</li>
+<li><strong>Fines &amp; Payments:</strong>
+<ul>
+<li>Fines are calculated at Rs. 5/- per day for overdue books.</li>
+<li>Owner records payments (membership fees, fine collections).</li>
+<li>Members can view their outstanding fines and payment history.</li>
+</ul>
+</li>
+<li><strong>Reporting (Owner-specific):</strong>
+<ul>
+<li>User statistics (total members, active, inactive, growth, avg books/member).</li>
+<li>Book inventory reports (total books/copies, available, issued, utilization).</li>
+<li>Financial reports (revenue from fees/fines, expenses, profit/loss trends).</li>
+<li>Overdue books list.</li>
+<li>Asset valuation.</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-detailed-process-flows">4. Detailed Process Flows</h3>
+<h4 id="a-member-self-registration"><strong>A. Member Self-Registration:</strong></h4>
+<ol>
+<li>User accesses <code>RegisterScreen.js</code>.</li>
+<li>Fills out <code>fullName</code>, <code>email</code>, <code>phone</code>, <code>password</code>, <code>confirmPassword</code>.</li>
+<li>Submits form.</li>
+<li>React Native app sends <code>POST /api/auth/register</code> request.</li>
+<li>Spring Boot:
+<ul>
+<li>Validates input (email format, password strength, matching passwords).</li>
+<li>Checks if email already exists.</li>
+<li>Hashes password using BCrypt.</li>
+<li>Creates new <code>Member</code> record in <code>Members</code> table with <code>role='MEMBER'</code> and <code>is_paid_member=FALSE</code> (default for new registrations).</li>
+<li>Returns success message.</li>
+</ul>
+</li>
+<li>React Native: Displays success, redirects to <code>LoginScreen</code>.</li>
+</ol>
+<h4 id="b-user-login"><strong>B. User Login:</strong></h4>
+<ol>
+<li>User accesses <code>LoginScreen.js</code>.</li>
+<li>Enters <code>email</code> and <code>password</code>.</li>
+<li>Submits form.</li>
+<li>React Native app sends <code>POST /api/auth/login</code> request.</li>
+<li>Spring Boot:
+<ul>
+<li>Authenticates user (verifies email and password hash).</li>
+<li>Generates a JWT token containing <code>userId</code>, <code>username</code>, <code>role</code>, <code>isPaidMember</code> (and possibly other relevant flags).</li>
+<li>Returns the JWT token and user details.</li>
+</ul>
+</li>
+<li>React Native:
+<ul>
+<li>Stores the JWT token securely.</li>
+<li>Reads <code>role</code> from the JWT.</li>
+<li>Navigates to <code>MemberDashboardScreen</code> if <code>role='MEMBER'</code> or <code>OwnerDashboardScreen</code> if <code>role='OWNER'</code>.</li>
+</ul>
+</li>
+</ol>
+<h4 id="c-member-borrowing-a-book-via-ui"><strong>C. Member Borrowing a Book (via UI):</strong></h4>
+<ol>
+<li>Member logs in and navigates to <code>BookSearchScreen.js</code>.</li>
+<li>Searches for a book, finds it, and goes to <code>BookDetailsScreen.js</code>.</li>
+<li>Sees &quot;Borrow This Book&quot; button.</li>
+<li>Clicks &quot;View All Copies&quot; which leads to <code>AvailableCopiesScreen.js</code>.</li>
+<li>On <code>AvailableCopiesScreen.js</code>, the member sees a list of specific copies.</li>
+<li>Clicks &quot;Borrow This Copy&quot; on an <code>AVAILABLE</code> copy.</li>
+<li>React Native app sends <code>POST /api/member/borrow/{copyIdentifier}</code>.</li>
+<li>Spring Boot:
+<ul>
+<li>Authenticates member using JWT.</li>
+<li>Retrieves the specific <code>Copy</code> by <code>copyIdentifier</code>.</li>
+<li><strong>Crucial Check:</strong> Verifies if the authenticated <code>Member</code>'s <code>is_paid_member</code> flag is <code>TRUE</code>. If <code>FALSE</code>, returns error.</li>
+<li><strong>Crucial Check:</strong> Verifies if <code>Copy.status</code> is 'AVAILABLE'. If not, returns error.</li>
+<li>Creates a new <code>BorrowingTransaction</code> record:
+<ul>
+<li><code>copyid</code> = selected copy's ID.</li>
+<li><code>memberid</code> = authenticated member's ID.</li>
+<li><code>issue_date</code> = current timestamp.</li>
+<li><code>due_date</code> = <code>issue_date</code> + 7 days.</li>
+<li><code>status</code> = 'BORROWED'.</li>
+</ul>
+</li>
+<li>Updates <code>Copy.status</code> to 'ISSUED'.</li>
+<li>Returns success message.</li>
+</ul>
+</li>
+<li>React Native: Displays success/error message. Updates UI to reflect borrowed status.</li>
+</ol>
+<h4 id="d-owner-processing-book-return"><strong>D. Owner Processing Book Return:</strong></h4>
+<ol>
+<li>Owner logs in and navigates to <code>ProcessReturnScreen</code> (from Owner Dashboard's quick actions, not provided as HTML but implied from requirements).</li>
+<li>Owner enters/scans the <code>copy_identifier</code> of the returned book.</li>
+<li>Owner confirms the member returning the book (e.g., by selecting from a list of members with that book).</li>
+<li>Owner clicks &quot;Process Return&quot;.</li>
+<li>React Native app sends <code>POST /api/owner/return</code> with <code>copyIdentifier</code> and <code>memberId</code>.</li>
+<li>Spring Boot:
+<ul>
+<li>Authenticates Owner using JWT.</li>
+<li>Finds the active <code>BorrowingTransaction</code> for the given <code>copyIdentifier</code> and <code>memberId</code> where <code>return_date</code> is <code>NULL</code>.</li>
+<li>Calculates <code>days_overdue = (current_date - due_date)</code>. If <code>current_date &lt;= due_date</code>, <code>days_overdue = 0</code>.</li>
+<li>Calculates <code>fine_amount = days_overdue * 5.00</code> (if <code>days_overdue &gt; 0</code>).</li>
+<li>Updates <code>BorrowingTransaction</code> record:
+<ul>
+<li><code>return_date</code> = current timestamp.</li>
+<li><code>fine_amount</code> = calculated fine.</li>
+<li><code>status</code> = 'RETURNED' (or 'RETURNED_WITH_FINE' if we want more granular status).</li>
+</ul>
+</li>
+<li>Updates <code>Copy.status</code> to 'AVAILABLE'.</li>
+<li>If <code>fine_amount &gt; 0</code>:
+<ul>
+<li>Creates a <code>Payment</code> record with <code>type='FINE_PAYMENT'</code>, <code>amount=fine_amount</code>, <code>memberid=memberid</code>, <code>payment_date=current timestamp</code>. (Assuming fine is collected immediately on return, as per requirement &quot;should be taken by Librarian while returning book&quot;). If not collected immediately, we'd create a <code>Fine</code> record and have a separate endpoint for <code>collecting</code> it. Let's make the <code>Fines</code> table track <em>incurred</em> fines, and <code>Payments</code> table track <em>collected</em> fines, similar to the initial schema. So, if fine &gt; 0, it <em>incurs</em> a fine which is then <em>collected</em> separately.</li>
+<li><em>Revision:</em> <code>fine_amount</code> in <code>IssuerRecord</code> is the fine <em>incurred</em>. A separate <code>Fines</code> table (which I defined initially, but the ERD didn't explicitly show separate from IssuerRecord's fine) and <code>Payments</code> table (<code>type='FINE_PAYMENT'</code>) manage the collection. Let's stick to my earlier detailed schema:
+<ul>
+<li>If <code>fine_amount &gt; 0</code>, also create a new record in the <code>Fines</code> table (with FK to <code>BorrowingTransaction</code>, <code>user_id</code>, <code>amount</code>, <code>incurred_date</code>, <code>is_paid=FALSE</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Returns confirmation, including fine amount (if any).</li>
+</ul>
+</li>
+<li>React Native: Displays return summary, prompts for fine collection if applicable.</li>
+</ol>
+<h4 id="e-owner-toggles-member-paid-status--records-payment"><strong>E. Owner Toggles Member Paid Status &amp; Records Payment:</strong></h4>
+<ol>
+<li>Owner logs in and navigates to <code>UserManagementScreen.js</code>.</li>
+<li>Selects a <code>Member</code> to view their details (<code>UserDetailsScreen.js</code>).</li>
+<li>Owner clicks button to <code>Mark as Paid</code> / <code>Record Payment</code>.</li>
+<li>React Native app sends <code>PUT /api/owner/users/{userId}/update-payment-status</code> (to toggle <code>is_paid_member</code>).</li>
+<li>React Native app sends <code>POST /api/owner/users/{userId}/record-payment</code> (to add to <code>Payments</code> history).</li>
+<li>Spring Boot:
+<ul>
+<li>Authenticates Owner.</li>
+<li><code>PUT /api/owner/users/{userId}/update-payment-status</code>: Updates <code>Members.is_paid_member</code> to <code>TRUE</code> and <code>Members.last_payment_date</code> to current date for <code>userId</code>.</li>
+<li><code>POST /api/owner/users/{userId}/record-payment</code>: Creates new <code>Payment</code> record with <code>type='MEMBERSHIP_FEE'</code>, <code>amount</code>, <code>memberid=userId</code>, <code>payment_date=current timestamp</code>, <code>due_date=next month</code>.</li>
+<li>Returns success.</li>
+</ul>
+</li>
+<li>React Native: Updates UI.</li>
+</ol>
+<h3 id="5-spring-boot-api-design-guidelines--comprehensive-endpoint-reference">5. Spring Boot API Design Guidelines &amp; Comprehensive Endpoint Reference</h3>
+<p><strong>General Guidelines:</strong></p>
+<ul>
+<li><strong>RESTful Principles:</strong> Use standard HTTP methods (GET, POST, PUT, DELETE), meaningful URLs, and standard HTTP status codes.</li>
+<li><strong>JSON Payloads:</strong> All requests and responses will be in JSON format.</li>
+<li><strong>Layered Architecture:</strong> Separate concerns into Controller, Service, Repository layers.</li>
+<li><strong>Spring Security &amp; JWT:</strong>
+<ul>
+<li>Authentication: <code>POST /api/auth/login</code> generates JWT.</li>
+<li>Authorization: JWT sent in <code>Authorization: Bearer &lt;token&gt;</code> header for all protected endpoints.</li>
+<li>Role-Based Access: Use <code>@PreAuthorize(&quot;hasRole('MEMBER')&quot;)</code> or <code>@PreAuthorize(&quot;hasRole('OWNER')&quot;)</code> on controller methods.</li>
+</ul>
+</li>
+<li><strong>Error Handling:</strong> Implement global exception handling to return consistent error responses (e.g., <code>400 Bad Request</code>, <code>401 Unauthorized</code>, <code>403 Forbidden</code>, <code>404 Not Found</code>, <code>500 Internal Server Error</code>).</li>
+<li><strong>Pagination &amp; Filtering:</strong> For list endpoints, implement pagination (page number, page size) and optional filtering parameters.</li>
+</ul>
+<hr>
+<p><strong>API Endpoint Reference:</strong></p>
+<h4 id="a-common--authentication-endpoints"><strong>A. Common &amp; Authentication Endpoints</strong></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Endpoint URL</th>
+<th>HTTP Method</th>
+<th>Description</th>
+<th>Access</th>
+<th>Request Body (JSON)</th>
+<th>Response Body (JSON)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>/api/auth/login</code></td>
+<td><code>POST</code></td>
+<td>Authenticate a user and return a JWT token.</td>
+<td><code>PUBLIC</code></td>
+<td><code>{ &quot;email&quot;: &quot;string&quot;, &quot;password&quot;: &quot;string&quot; }</code></td>
+<td><code>{&quot;token&quot;: &quot;jwt_token_string&quot;, &quot;userId&quot;: int, &quot;username&quot;: &quot;string&quot;, &quot;email&quot;: &quot;string&quot;, &quot;role&quot;: &quot;string&quot;, &quot;firstName&quot;: &quot;string&quot;, &quot;lastName&quot;: &quot;string&quot;, &quot;isPaidMember&quot;: boolean, &quot;message&quot;: &quot;Login successful&quot;}</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>/api/auth/register</code></td>
+<td><code>POST</code></td>
+<td>Register a new member account.</td>
+<td><code>PUBLIC</code></td>
+<td><code>{ &quot;firstName&quot;: &quot;string&quot;, &quot;lastName&quot;: &quot;string&quot;, &quot;email&quot;: &quot;string&quot;, &quot;phone&quot;: &quot;string&quot;, &quot;password&quot;: &quot;string&quot; }</code></td>
+<td><code>{&quot;message&quot;: &quot;User registered successfully.&quot;, &quot;userId&quot;: int}</code> or <code>{&quot;error&quot;: &quot;Email already registered.&quot;}</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>/api/auth/forgot-password</code></td>
+<td><code>POST</code></td>
+<td>Initiate password reset by sending an email.</td>
+<td><code>PUBLIC</code></td>
+<td><code>{ &quot;email&quot;: &quot;string&quot; }</code></td>
+<td><code>{&quot;message&quot;: &quot;Password reset instructions sent to your email.&quot;}</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>/api/user/profile</code></td>
+<td><code>GET</code></td>
+<td>Retrieve the profile details of the authenticated user.</td>
+<td><code>MEMBER</code>, <code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td><code>{&quot;id&quot;: int, &quot;username&quot;: &quot;string&quot;, &quot;email&quot;: &quot;string&quot;, &quot;firstName&quot;: &quot;string&quot;, &quot;lastName&quot;: &quot;string&quot;, &quot;phone&quot;: &quot;string&quot;, &quot;role&quot;: &quot;string&quot;, &quot;isPaidMember&quot;: boolean, &quot;libraryCardNumber&quot;: &quot;string&quot;, &quot;memberSince&quot;: &quot;YYYY-MM-DD&quot;, &quot;membershipStatus&quot;: &quot;string&quot;, &quot;nextPaymentDueDate&quot;: &quot;YYYY-MM-DD&quot;}</code> (Fields shown depend on role and data availability)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>/api/user/profile</code></td>
+<td><code>PUT</code></td>
+<td>Update the profile details of the authenticated user.</td>
+<td><code>MEMBER</code>, <code>OWNER</code></td>
+<td><code>{ &quot;firstName&quot;: &quot;string&quot;, &quot;lastName&quot;: &quot;string&quot;, &quot;phone&quot;: &quot;string&quot; }</code> (Email cannot be changed via this endpoint, generally separate process)</td>
+<td><code>{&quot;message&quot;: &quot;Profile updated successfully.&quot;}</code> or <code>{&quot;error&quot;: &quot;Validation failed.&quot;}</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>/api/user/change-password</code></td>
+<td><code>PUT</code></td>
+<td>Change the password for the authenticated user.</td>
+<td><code>MEMBER</code>, <code>OWNER</code></td>
+<td><code>{ &quot;currentPassword&quot;: &quot;string&quot;, &quot;newPassword&quot;: &quot;string&quot; }</code></td>
+<td><code>{&quot;message&quot;: &quot;Password updated successfully.&quot;}</code> or <code>{&quot;error&quot;: &quot;Invalid current password.&quot;}</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>/api/books</code></td>
+<td><code>GET</code></td>
+<td>Search and list all books with optional filters.</td>
+<td><code>MEMBER</code>, <code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: <code>query</code> (title, author, isbn), <code>category</code> (title, author, subject, isbn), <code>subject</code> (genre), <code>availability</code> (true/false), <code>page</code> (int), <code>size</code> (int)</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>/api/books/{bookId}</code></td>
+<td><code>GET</code></td>
+<td>Get details of a specific book title and a summary of its copies.</td>
+<td><code>MEMBER</code>, <code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td><code>{&quot;id&quot;: int, &quot;title&quot;: &quot;string&quot;, &quot;author&quot;: &quot;string&quot;, &quot;genre&quot;: &quot;string&quot;, &quot;isbn&quot;: &quot;string&quot;, &quot;price&quot;: decimal, &quot;totalCopies&quot;: int, &quot;availableCopies&quot;: int, &quot;overallAvailabilityStatus&quot;: &quot;string&quot;, &quot;description&quot;: &quot;string&quot;, &quot;copiesSummary&quot;: [{&quot;copyIdentifier&quot;: &quot;string&quot;, &quot;rack&quot;: int, &quot;status&quot;: &quot;string&quot;}, ...], &quot;relatedBooks&quot;: [{&quot;id&quot;: int, &quot;title&quot;: &quot;string&quot;, &quot;author&quot;: &quot;string&quot;}, ...]}</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>/api/books/{bookId}/copies</code></td>
+<td><code>GET</code></td>
+<td>Get all copies for a specific book, with optional filters.</td>
+<td><code>MEMBER</code>, <code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: <code>status</code> (all, available, issued), <code>rackId</code> (int)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="b-member-specific-endpoints"><strong>B. Member Specific Endpoints</strong></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Endpoint URL</th>
+<th>HTTP Method</th>
+<th>Description</th>
+<th>Access</th>
+<th>Request Body (JSON)</th>
+<th>Response Body (JSON)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td><code>/api/member/dashboard-summary</code></td>
+<td><code>GET</code></td>
+<td>Get all summary data for the member dashboard.</td>
+<td><code>MEMBER</code></td>
+<td><code>(No Request Body)</code></td>
+<td><code>{&quot;userName&quot;: &quot;string&quot;, &quot;membershipExpires&quot;: &quot;string (YYYY-MM-DD)&quot;, &quot;booksCurrentlyBorrowed&quot;: int, &quot;totalBooksRead&quot;: int, &quot;outstandingFines&quot;: decimal, &quot;daysUntilNextReturn&quot;: int, &quot;recentActivity&quot;: [{&quot;description&quot;: &quot;string&quot;, &quot;date&quot;: &quot;string&quot;}, ...]}</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>/api/member/borrow/{copyIdentifier}</code></td>
+<td><code>POST</code></td>
+<td>Request to borrow a specific book copy. Requires member to be paid and copy to be available.</td>
+<td><code>MEMBER</code></td>
+<td><code>(No Request Body, copyIdentifier in path)</code></td>
+<td><code>{&quot;message&quot;: &quot;Book borrowed successfully.&quot;, &quot;transactionId&quot;: int}</code> or <code>{&quot;error&quot;: &quot;string&quot;}</code> (e.g., &quot;Not a paid member&quot;, &quot;Book not available&quot;)</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>/api/member/borrowed-books</code></td>
+<td><code>GET</code></td>
+<td>Get a list of books currently borrowed by the authenticated member.</td>
+<td><code>MEMBER</code></td>
+<td><code>(No Request Body)</code></td>
+<td><code>{&quot;currentlyBorrowedCount&quot;: int, &quot;dueSoonCount&quot;: int, &quot;overdueCount&quot;: int, &quot;totalOutstandingFines&quot;: decimal, &quot;nextReturnDueDate&quot;: &quot;YYYY-MM-DD&quot;, &quot;borrowedBooks&quot;: [{&quot;transactionId&quot;: int, &quot;bookTitle&quot;: &quot;string&quot;, &quot;bookAuthor&quot;: &quot;string&quot;, &quot;copyIdentifier&quot;: &quot;string&quot;, &quot;borrowedDate&quot;: &quot;YYYY-MM-DD&quot;, &quot;dueDate&quot;: &quot;YYYY-MM-DD&quot;, &quot;daysRemaining&quot;: int, &quot;rackLocation&quot;: int, &quot;status&quot;: &quot;string (GOOD_STANDING, DUE_SOON, OVERDUE)&quot;}, ...]}</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>/api/member/borrow/{transactionId}/renew</code></td>
+<td><code>POST</code></td>
+<td>Submit a request to renew a borrowed book. (Note: Librarian manual confirmation is required for now).</td>
+<td><code>MEMBER</code></td>
+<td><code>(No Request Body, transactionId in path)</code></td>
+<td><code>{&quot;message&quot;: &quot;Renewal request submitted. Please visit the library desk to confirm.&quot;}</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>/api/member/borrowing-history</code></td>
+<td><code>GET</code></td>
+<td>Get the complete borrowing history of the authenticated member, with filters and pagination.</td>
+<td><code>MEMBER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: <code>page</code>, <code>size</code>, <code>startDate</code>, <code>endDate</code>, <code>status</code> (all, returned, current, overdue), <code>subject</code> (genre)</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>/api/member/fines/outstanding-summary</code></td>
+<td><code>GET</code></td>
+<td>Get a summary of outstanding fines for the authenticated member.</td>
+<td><code>MEMBER</code></td>
+<td><code>(No Request Body)</code></td>
+<td><code>{&quot;hasOutstandingFines&quot;: boolean, &quot;currentOutstandingAmount&quot;: decimal, &quot;totalFinesPaid&quot;: decimal, &quot;lateReturnsCount&quot;: int, &quot;fineRatePerDay&quot;: decimal, &quot;fineCalculationDetails&quot;: {&quot;returnPeriod&quot;: &quot;string&quot;, &quot;fineRate&quot;: &quot;string&quot;, &quot;gracePeriod&quot;: &quot;string&quot;, &quot;maximumFine&quot;: &quot;string&quot;}, &quot;tipsToAvoidFines&quot;: [&quot;string&quot;, ...]}</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>/api/member/fines</code></td>
+<td><code>GET</code></td>
+<td>Get a list of all fines (outstanding or paid) for the authenticated member.</td>
+<td><code>MEMBER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: <code>isPaid</code> (true/false)</td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>/api/member/payment-history</code></td>
+<td><code>GET</code></td>
+<td>Get the payment history (fees and fines) for the authenticated member, with filters and pagination.</td>
+<td><code>MEMBER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: <code>page</code>, <code>size</code>, <code>startDate</code>, <code>endDate</code>, <code>type</code> (all, fee, fine), <code>amountRange</code> (all, 0-100, 100-500, 500+)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="c-owner-specific-endpoints"><strong>C. Owner Specific Endpoints</strong></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Endpoint URL</th>
+<th>HTTP Method</th>
+<th>Description</th>
+<th>Access</th>
+<th>Request Body (JSON)</th>
+<th>Response Body (JSON)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18</td>
+<td><code>/api/owner/dashboard-summary</code></td>
+<td><code>GET</code></td>
+<td>Fetches aggregated data for the owner's dashboard overview.</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td><code>{&quot;userName&quot;: &quot;string&quot;, &quot;currentDateTime&quot;: &quot;string&quot;, &quot;alerts&quot;: [{&quot;type&quot;: &quot;string&quot;, &quot;message&quot;: &quot;string&quot;}], &quot;kpis&quot;: [{&quot;label&quot;: &quot;string&quot;, &quot;value&quot;: &quot;string&quot;, &quot;trend&quot;: &quot;string&quot;, &quot;status&quot;: &quot;string&quot;}], &quot;revenueTrendData&quot;: [{&quot;month&quot;: &quot;string&quot;, &quot;value&quot;: decimal}], &quot;keyBusinessMetrics&quot;: [{&quot;label&quot;: &quot;string&quot;, &quot;value&quot;: &quot;string&quot;}], &quot;thisMonthSummary&quot;: [{&quot;label&quot;: &quot;string&quot;, &quot;value&quot;: &quot;string&quot;}], &quot;performanceTargets&quot;: [{&quot;label&quot;: &quot;string&quot;, &quot;value&quot;: &quot;string&quot;, &quot;status&quot;: &quot;string&quot;}]}</code></td>
+</tr>
+<tr>
+<td>19</td>
+<td><code>/api/owner/users</code></td>
+<td><code>GET</code></td>
+<td>List all users (members and owners) with filters and pagination.</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: <code>role</code> (MEMBER, OWNER), <code>isPaid</code> (true/false), <code>search</code> (keyword for name/email), <code>page</code>, <code>size</code></td>
+</tr>
+<tr>
+<td>20</td>
+<td><code>/api/owner/users/{userId}</code></td>
+<td><code>GET</code></td>
+<td>Get detailed information for a specific user.</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td><code>{&quot;id&quot;: int, &quot;username&quot;: &quot;string&quot;, &quot;email&quot;: &quot;string&quot;, &quot;firstName&quot;: &quot;string&quot;, &quot;lastName&quot;: &quot;string&quot;, &quot;phone&quot;: &quot;string&quot;, &quot;role&quot;: &quot;string&quot;, &quot;isPaidMember&quot;: boolean, &quot;lastPaymentDate&quot;: &quot;YYYY-MM-DD&quot;, &quot;isActive&quot;: boolean, &quot;memberSince&quot;: &quot;YYYY-MM-DD&quot;, &quot;totalBooksBorrowed&quot;: int, &quot;totalFinesIncurred&quot;: decimal, &quot;totalFinesPaid&quot;: decimal}</code></td>
+</tr>
+<tr>
+<td>21</td>
+<td><code>/api/owner/users/{userId}/update-payment-status</code></td>
+<td><code>PUT</code></td>
+<td>Toggle/set a member's paid status.</td>
+<td><code>OWNER</code></td>
+<td><code>{ &quot;isPaid&quot;: boolean }</code> (Backend will update <code>lastPaymentDate</code> if <code>isPaid</code> is true)</td>
+<td><code>{&quot;message&quot;: &quot;Member payment status updated successfully.&quot;}</code></td>
+</tr>
+<tr>
+<td>22</td>
+<td><code>/api/owner/users/{userId}/record-payment</code></td>
+<td><code>POST</code></td>
+<td>Record a payment (membership fee) for a member.</td>
+<td><code>OWNER</code></td>
+<td><code>{ &quot;amount&quot;: decimal, &quot;periodCovered&quot;: &quot;string (e.g., 'Oct 2023')&quot;, &quot;paymentMethod&quot;: &quot;string (e.g., 'Cash', 'Online')&quot; }</code></td>
+<td><code>{&quot;message&quot;: &quot;Payment recorded successfully.&quot;, &quot;paymentId&quot;: int}</code> (Also triggers update to <code>is_paid_member</code> and <code>last_payment_date</code> in <code>Members</code> table)</td>
+</tr>
+<tr>
+<td>23</td>
+<td><code>/api/owner/books</code></td>
+<td><code>POST</code></td>
+<td>Add a new book title to the library.</td>
+<td><code>OWNER</code></td>
+<td><code>{ &quot;title&quot;: &quot;string&quot;, &quot;author&quot;: &quot;string&quot;, &quot;genre&quot;: &quot;string&quot;, &quot;isbn&quot;: &quot;string&quot;, &quot;price&quot;: decimal }</code></td>
+<td><code>{&quot;message&quot;: &quot;Book added successfully.&quot;, &quot;bookId&quot;: int}</code></td>
+</tr>
+<tr>
+<td>24</td>
+<td><code>/api/owner/books/{bookId}</code></td>
+<td><code>PUT</code></td>
+<td>Update details of an existing book title.</td>
+<td><code>OWNER</code></td>
+<td><code>{ &quot;title&quot;: &quot;string&quot;, &quot;author&quot;: &quot;string&quot;, &quot;genre&quot;: &quot;string&quot;, &quot;isbn&quot;: &quot;string&quot;, &quot;price&quot;: decimal }</code> (All fields are optional for partial update)</td>
+<td><code>{&quot;message&quot;: &quot;Book updated successfully.&quot;}</code></td>
+</tr>
+<tr>
+<td>25</td>
+<td><code>/api/owner/books/{bookId}</code></td>
+<td><code>DELETE</code></td>
+<td>Delete a book title. (Should only allow if no active copies or transactions exist).</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td><code>{&quot;message&quot;: &quot;Book deleted successfully.&quot;}</code> or <code>{&quot;error&quot;: &quot;Book cannot be deleted due to active copies or transactions.&quot;}</code></td>
+</tr>
+<tr>
+<td>26</td>
+<td><code>/api/owner/book-copies</code></td>
+<td><code>POST</code></td>
+<td>Add a new physical copy for an existing book.</td>
+<td><code>OWNER</code></td>
+<td><code>{ &quot;bookId&quot;: int, &quot;copyIdentifier&quot;: &quot;string&quot;, &quot;rack&quot;: int, &quot;status&quot;: &quot;AVAILABLE&quot; }</code> (Status defaults to AVAILABLE)</td>
+<td><code>{&quot;message&quot;: &quot;Book copy added successfully.&quot;, &quot;copyId&quot;: int}</code></td>
+</tr>
+<tr>
+<td>27</td>
+<td><code>/api/owner/book-copies/{copyId}</code></td>
+<td><code>PUT</code></td>
+<td>Update details (rack, status, condition) of a specific book copy.</td>
+<td><code>OWNER</code></td>
+<td><code>{ &quot;rack&quot;: int, &quot;status&quot;: &quot;string (AVAILABLE, ISSUED, LOST, DAMAGED)&quot;, &quot;condition&quot;: &quot;string&quot; }</code> (All fields optional for partial update)</td>
+<td><code>{&quot;message&quot;: &quot;Book copy updated successfully.&quot;}</code></td>
+</tr>
+<tr>
+<td>28</td>
+<td><code>/api/owner/book-copies/{copyId}</code></td>
+<td><code>DELETE</code></td>
+<td>Delete a specific book copy. (Should only allow if not currently issued).</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td><code>{&quot;message&quot;: &quot;Book copy deleted successfully.&quot;}</code> or <code>{&quot;error&quot;: &quot;Book copy cannot be deleted as it is currently issued.&quot;}</code></td>
+</tr>
+<tr>
+<td>29</td>
+<td><code>/api/owner/return</code></td>
+<td><code>POST</code></td>
+<td>Process the return of a book copy.</td>
+<td><code>OWNER</code></td>
+<td><code>{ &quot;copyIdentifier&quot;: &quot;string&quot;, &quot;memberId&quot;: int }</code> (The memberId is needed to identify the correct open transaction for that copy)</td>
+<td><code>{&quot;message&quot;: &quot;Book returned successfully.&quot;, &quot;fineDue&quot;: decimal, &quot;fineId&quot;: int (if fine incurred), &quot;borrowingTransactionId&quot;: int}</code></td>
+</tr>
+<tr>
+<td>30</td>
+<td><code>/api/owner/overdue-books</code></td>
+<td><code>GET</code></td>
+<td>Get a list of all currently overdue books.</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: <code>page</code>, <code>size</code></td>
+</tr>
+<tr>
+<td>31</td>
+<td><code>/api/owner/fines/{fineId}/collect</code></td>
+<td><code>POST</code></td>
+<td>Mark an incurred fine as paid.</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td><code>{&quot;message&quot;: &quot;Fine collected successfully.&quot;}</code></td>
+</tr>
+<tr>
+<td>32</td>
+<td><code>/api/owner/reports/dashboard-kpis</code></td>
+<td><code>GET</code></td>
+<td>Get aggregated KPI data for the Owner Dashboard. (This is a subset of the full dashboard-summary, but can be useful for individual widget updates.)</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td><code>{&quot;monthlyRevenue&quot;: decimal, &quot;monthlyRevenueTrend&quot;: &quot;string&quot;, &quot;activeMembers&quot;: int, &quot;activeMembersTrend&quot;: &quot;string&quot;, &quot;collectionEfficiency&quot;: decimal, &quot;collectionEfficiencyTrend&quot;: &quot;string&quot;, &quot;totalBooks&quot;: int, &quot;totalBooksTrend&quot;: &quot;string&quot;, &quot;booksInCirculation&quot;: int, &quot;booksInCirculationTrend&quot;: &quot;string&quot;, &quot;assetValue&quot;: decimal, &quot;assetValueTrend&quot;: &quot;string&quot;}</code></td>
+</tr>
+<tr>
+<td>33</td>
+<td><code>/api/owner/reports/user-statistics</code></td>
+<td><code>GET</code></td>
+<td>Get comprehensive user statistics and trends.</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: <code>dateRange</code> (month, quarter, year, all), <code>memberStatus</code> (all, active, inactive, new), <code>activityLevel</code> (all, high, medium, low), <code>reportType</code> (summary, detailed, trends)</td>
+</tr>
+<tr>
+<td>34</td>
+<td><code>/api/owner/reports/inventory-by-subject</code></td>
+<td><code>GET</code></td>
+<td>Get detailed inventory breakdown by subject category.</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: <code>sortBy</code> (title, booksCount, copiesCount, utilizationRate, totalValue), <code>utilization</code> (high, medium, low, all), <code>valueRange</code> (high, medium, low, all)</td>
+</tr>
+<tr>
+<td>35</td>
+<td><code>/api/owner/reports/books-by-copies</code></td>
+<td><code>GET</code></td>
+<td>Get detailed analysis of copy distribution and utilization per book title.</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: <code>page</code>, <code>size</code>, <code>subject</code> (genre), <code>utilization</code> (high, medium, low, underutilized, all), <code>copiesCount</code> (single, few, many, all), <code>sortBy</code> (title, copies, utilization, value), <code>sortDir</code> (asc, desc)</td>
+</tr>
+<tr>
+<td>36</td>
+<td><code>/api/owner/reports/collections</code></td>
+<td><code>GET</code></td>
+<td>Get comprehensive analysis of fee and fine collection performance.</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: <code>startDate</code> (YYYY-MM-DD), <code>endDate</code> (YYYY-MM-DD), <code>type</code> (all, fee, fine), <code>period</code> (daily, weekly, monthly, quarterly)</td>
+</tr>
+<tr>
+<td>37</td>
+<td><code>/api/owner/reports/financial</code></td>
+<td><code>GET</code></td>
+<td>Get comprehensive revenue tracking and financial performance analysis.</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: <code>startDate</code> (YYYY-MM-DD), <code>endDate</code> (YYYY-MM-DD), <code>reportType</code> (monthly, quarterly, yearly, custom), <code>category</code> (all, revenue, expenses, profit)</td>
+</tr>
+<tr>
+<td>38</td>
+<td><code>/api/owner/reports/assets</code></td>
+<td><code>GET</code></td>
+<td>Get comprehensive library inventory valuation and asset tracking analysis.</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: <code>assetType</code> (all, books, equipment, furniture), <code>valuationMethod</code> (cost, current, depreciated), <code>ageFilter</code> (all, new, recent, older), <code>statusFilter</code> (all, active, damaged, retired)</td>
+</tr>
+<tr>
+<td>39</td>
+<td><code>/api/owner/reports/{reportName}/export/pdf</code></td>
+<td><code>GET</code></td>
+<td>Export a specific report as a PDF file.</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: Same as the corresponding report GET endpoint</td>
+</tr>
+<tr>
+<td>40</td>
+<td><code>/api/owner/reports/{reportName}/export/excel</code></td>
+<td><code>GET</code></td>
+<td>Export a specific report as an Excel file.</td>
+<td><code>OWNER</code></td>
+<td><code>(No Request Body)</code></td>
+<td>Query Params: Same as the corresponding report GET endpoint</td>
+</tr>
+</tbody>
+</table>
+<p><em>(Note: <code>{reportName}</code> in export URLs would be a path variable like <code>user-statistics</code>, <code>financial</code>, etc. The backend would need a single controller method to handle these exports dynamically.)</em></p>
+<h3 id="6-react-native-ui-design-guidelines">6. React Native UI Design Guidelines</h3>
+<p><strong>General Principles:</strong></p>
+<ul>
+<li><strong>Component-Based:</strong> Break down UI into small, reusable components (e.g., <code>Header</code>, <code>Card</code>, <code>Button</code>, <code>Input</code>, <code>Table</code>, <code>ListItem</code>).</li>
+<li><strong>Cross-Platform:</strong> Design with responsiveness in mind for various screen sizes (phones, tablets).</li>
+<li><strong>Consistent Styling:</strong> Use a consistent theme (colors, fonts, spacing) across the app. Utilize StyleSheet for styling.</li>
+<li><strong>State Management:</strong>
+<ul>
+<li><strong>Local Component State:</strong> For form inputs, toggles, etc.</li>
+<li><strong>Context API:</strong> For global state like user authentication status, user role, and potentially theme preferences.</li>
+<li><strong>(Later Phases):</strong> Consider a more robust state management library like Zustand or Redux Toolkit for complex shared data (e.g., cached book lists, user report data) if direct Context API becomes cumbersome. For Phase 1, basic state management will suffice for UI interactions.</li>
+</ul>
+</li>
+<li><strong>Navigation:</strong> Use <code>React Navigation</code> library (<code>@react-navigation/native</code>, <code>@react-navigation/stack</code>, <code>@react-navigation/bottom-tabs</code>).</li>
+<li><strong>Dummy Data:</strong> For Phase 1, all data displayed will be hardcoded within the React Native application using JSON objects or arrays.</li>
+</ul>
+<p><strong>Role-Based UI Development:</strong></p>
+<ul>
+<li><strong>Conditional Rendering:</strong> After login (or mocked login in Phase 1), store the <code>user.role</code> (e.g., 'MEMBER' or 'OWNER').</li>
+<li>Use conditional rendering (<code>{userRole === 'OWNER' ? &lt;OwnerNavigator /&gt; : &lt;MemberNavigator /&gt;}</code>) to display the appropriate set of screens and navigation options.</li>
+<li>Within screens, use conditional rendering to show/hide specific elements or actions based on the user's role (e.g., &quot;Manage&quot; button visible only for Owner on book details).</li>
+</ul>
+<p><strong>Navigation Structure:</strong></p>
+<ul>
+<li><strong>Authentication Stack:</strong> <code>Login</code>, <code>Register</code>, <code>ForgotPassword</code> screens. No header.</li>
+<li><strong>Member Tab Navigator:</strong> Main dashboard, search, my books, history, fines, profile.</li>
+<li><strong>Owner Tab Navigator:</strong> Dashboard, user management, book management, reports.</li>
+<li><strong>Nested Stacks:</strong> Each tab in the Tab Navigator can have its own Stack Navigator for deeper navigation within that section (e.g., from Book Search to Book Details).</li>
+</ul>
+<hr>
+<h2 id="part-2-dummy-database-records-india-based">Part 2: Dummy Database Records (India-based)</h2>
+<p>This SQL script will populate your <code>library_db</code> with Indian-centric data, covering various scenarios for testing.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">-- USE library_db; -- Uncomment and replace 'library_db' if you are running this directly in a MySQL client</span>
+
+<span class="hljs-comment">-- Dummy Data for Library Management System (India-based)</span>
+
+<span class="hljs-comment">-- Delete existing data in reverse dependency order to avoid foreign key constraints</span>
+<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> IssuerRecord;
+<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Payments;
+<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Copies;
+<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Books;
+<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Members;
+
+<span class="hljs-comment">-- Reset AUTO_INCREMENT counters (Optional, useful for clean re-population)</span>
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Members AUTO_INCREMENT = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Books AUTO_INCREMENT = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Copies AUTO_INCREMENT = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Payments AUTO_INCREMENT = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> IssuerRecord AUTO_INCREMENT = <span class="hljs-number">1</span>;
+
+
+<span class="hljs-comment">-- -----------------------------------------------------</span>
+<span class="hljs-comment">-- Members Data (Indian names, emails, phones)</span>
+<span class="hljs-comment">-- Hashed passwords are 'password123' (use BCrypt hash for production)</span>
+<span class="hljs-comment">-- Generated using a dummy BCrypt hash for "password123": $2a$10$C823L7vL1P1bX9Z3v1.A.eO/M.vO.zY9YmG/vO.zY9YmG</span>
+<span class="hljs-comment">-- For real usage, generate unique hashes per user.</span>
+<span class="hljs-comment">-- -----------------------------------------------------</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Members (<span class="hljs-keyword">name</span>, email, phone, password_hash, <span class="hljs-keyword">role</span>, is_paid_member, last_payment_date) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-string">'Priya Sharma'</span>, <span class="hljs-string">'priya.sharma@example.com'</span>, <span class="hljs-string">'9810123456'</span>, <span class="hljs-string">'$2a$10$C823L7vL1P1bX9Z3v1.A.eO/M.vO.zY9YmG/vO.zY9YmG'</span>, <span class="hljs-string">'OWNER'</span>, <span class="hljs-literal">TRUE</span>, <span class="hljs-string">'2024-07-28 10:00:00'</span>), <span class="hljs-comment">-- Owner</span>
+(<span class="hljs-string">'Rahul Singh'</span>, <span class="hljs-string">'rahul.singh@example.com'</span>, <span class="hljs-string">'9920234567'</span>, <span class="hljs-string">'$2a$10$C823L7vL1P1bX9Z3v1.A.eO/M.vO.zY9YmG/vO.zY9YmG'</span>, <span class="hljs-string">'MEMBER'</span>, <span class="hljs-literal">TRUE</span>, <span class="hljs-string">'2024-08-01 12:30:00'</span>), <span class="hljs-comment">-- Active Member</span>
+(<span class="hljs-string">'Anjali Gupta'</span>, <span class="hljs-string">'anjali.gupta@example.com'</span>, <span class="hljs-string">'9730345678'</span>, <span class="hljs-string">'$2a$10$C823L7vL1P1bX9Z3v1.A.eO/M.vO.zY9YmG/vO.zY9YmG'</span>, <span class="hljs-string">'MEMBER'</span>, <span class="hljs-literal">FALSE</span>, <span class="hljs-string">'2024-06-15 11:00:00'</span>), <span class="hljs-comment">-- Unpaid Member</span>
+(<span class="hljs-string">'Vikram Kumar'</span>, <span class="hljs-string">'vikram.kumar@example.com'</span>, <span class="hljs-string">'9640456789'</span>, <span class="hljs-string">'$2a$10$C823L7vL1P1bX9Z3v1.A.eO/M.vO.zY9YmG/vO.zY9YmG'</span>, <span class="hljs-string">'MEMBER'</span>, <span class="hljs-literal">TRUE</span>, <span class="hljs-string">'2024-07-20 09:00:00'</span>), <span class="hljs-comment">-- Active Member</span>
+(<span class="hljs-string">'Deepa Reddy'</span>, <span class="hljs-string">'deepa.reddy@example.com'</span>, <span class="hljs-string">'9550567890'</span>, <span class="hljs-string">'$2a$10$C823L7vL1P1bX9Z3v1.A.eO/M.vO.zY9YmG/vO.zY9YmG'</span>, <span class="hljs-string">'MEMBER'</span>, <span class="hljs-literal">TRUE</span>, <span class="hljs-string">'2024-08-10 14:00:00'</span>), <span class="hljs-comment">-- Active Member</span>
+(<span class="hljs-string">'Suresh Patil'</span>, <span class="hljs-string">'suresh.patil@example.com'</span>, <span class="hljs-string">'9460678901'</span>, <span class="hljs-string">'$2a$10$C823L7vL1P1bX9Z3v1.A.eO/M.vO.zY9YmG/vO.zY9YmG'</span>, <span class="hljs-string">'MEMBER'</span>, <span class="hljs-literal">FALSE</span>, <span class="hljs-string">'2024-05-01 16:00:00'</span>), <span class="hljs-comment">-- Inactive/Unpaid Member</span>
+(<span class="hljs-string">'Meena Rao'</span>, <span class="hljs-string">'meena.rao@example.com'</span>, <span class="hljs-string">'9370789012'</span>, <span class="hljs-string">'$2a$10$C823L7vL1P1bX9Z3v1.A.eO/M.vO.zY9YmG/vO.zY9YmG'</span>, <span class="hljs-string">'MEMBER'</span>, <span class="hljs-literal">TRUE</span>, <span class="hljs-string">'2024-08-05 10:00:00'</span>), <span class="hljs-comment">-- Active Member</span>
+(<span class="hljs-string">'Rajesh Kumar'</span>, <span class="hljs-string">'rajesh.kumar@example.com'</span>, <span class="hljs-string">'9280890123'</span>, <span class="hljs-string">'$2a$10$C823L7vL1P1bX9Z3v1.A.eO/M.vO.zY9YmG/vO.zY9YmG'</span>, <span class="hljs-string">'MEMBER'</span>, <span class="hljs-literal">TRUE</span>, <span class="hljs-string">'2024-07-25 11:00:00'</span>); <span class="hljs-comment">-- Active Member</span>
+
+<span class="hljs-comment">-- -----------------------------------------------------</span>
+<span class="hljs-comment">-- Books Data (Popular Indian and Global authors/genres)</span>
+<span class="hljs-comment">-- -----------------------------------------------------</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Books (title, author, genre, price, isbn) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-string">'The Art of Programming'</span>, <span class="hljs-string">'Vikram Seth'</span>, <span class="hljs-string">'Programming'</span>, <span class="hljs-number">850.00</span>, <span class="hljs-string">'978-0132350884'</span>),
+(<span class="hljs-string">'Indian History Unveiled'</span>, <span class="hljs-string">'Ramachandra Guha'</span>, <span class="hljs-string">'History'</span>, <span class="hljs-number">620.50</span>, <span class="hljs-string">'978-0132350885'</span>),
+(<span class="hljs-string">'Yoga for Inner Peace'</span>, <span class="hljs-string">'B.K.S. Iyengar'</span>, <span class="hljs-string">'Health'</span>, <span class="hljs-number">450.00</span>, <span class="hljs-string">'978-0132350886'</span>),
+(<span class="hljs-string">'Algorithms Illustrated'</span>, <span class="hljs-string">'S. Chandrashekar'</span>, <span class="hljs-string">'Programming'</span>, <span class="hljs-number">780.00</span>, <span class="hljs-string">'978-0132350887'</span>),
+(<span class="hljs-string">'Spiritual Wisdom of India'</span>, <span class="hljs-string">'Swami Vivekananda'</span>, <span class="hljs-string">'Spirituality'</span>, <span class="hljs-number">300.00</span>, <span class="hljs-string">'978-0132350888'</span>),
+(<span class="hljs-string">'Data Science Handbook'</span>, <span class="hljs-string">'Anand Rao'</span>, <span class="hljs-string">'Technology'</span>, <span class="hljs-number">950.00</span>, <span class="hljs-string">'978-0132350889'</span>),
+(<span class="hljs-string">'Marvels of Indian Architecture'</span>, <span class="hljs-string">'George Michell'</span>, <span class="hljs-string">'Art &amp; Culture'</span>, <span class="hljs-number">1200.00</span>, <span class="hljs-string">'978-0132350890'</span>),
+(<span class="hljs-string">'Introduction to Machine Learning'</span>, <span class="hljs-string">'Pratik Mehta'</span>, <span class="hljs-string">'Programming'</span>, <span class="hljs-number">1100.00</span>, <span class="hljs-string">'978-0132350891'</span>),
+(<span class="hljs-string">'The White Tiger'</span>, <span class="hljs-string">'Aravind Adiga'</span>, <span class="hljs-string">'Fiction'</span>, <span class="hljs-number">350.00</span>, <span class="hljs-string">'978-0132350892'</span>),
+(<span class="hljs-string">'Mathematics for Engineers'</span>, <span class="hljs-string">'R.K. Jain'</span>, <span class="hljs-string">'Science'</span>, <span class="hljs-number">980.00</span>, <span class="hljs-string">'978-0132350893'</span>),
+(<span class="hljs-string">'Indian Mythology Tales'</span>, <span class="hljs-string">'Devdutt Pattanaik'</span>, <span class="hljs-string">'Mythology'</span>, <span class="hljs-number">400.00</span>, <span class="hljs-string">'978-0132350894'</span>),
+(<span class="hljs-string">'Python for Beginners'</span>, <span class="hljs-string">'Sarika Das'</span>, <span class="hljs-string">'Programming'</span>, <span class="hljs-number">600.00</span>, <span class="hljs-string">'978-0132350895'</span>),
+(<span class="hljs-string">'Fundamentals of Physics'</span>, <span class="hljs-string">'H.C. Verma'</span>, <span class="hljs-string">'Science'</span>, <span class="hljs-number">750.00</span>, <span class="hljs-string">'978-0132350896'</span>),
+(<span class="hljs-string">'Great Indian Novels'</span>, <span class="hljs-string">'Various Authors'</span>, <span class="hljs-string">'Literature'</span>, <span class="hljs-number">550.00</span>, <span class="hljs-string">'978-0132350897'</span>),
+(<span class="hljs-string">'Basic Chemistry'</span>, <span class="hljs-string">'R.D. Sharma'</span>, <span class="hljs-string">'Science'</span>, <span class="hljs-number">680.00</span>, <span class="hljs-string">'978-0132350898'</span>);
+
+
+<span class="hljs-comment">-- -----------------------------------------------------</span>
+<span class="hljs-comment">-- Copies Data (Multiple copies for popular books, various statuses, Indian rack naming)</span>
+<span class="hljs-comment">-- -----------------------------------------------------</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Copies (bookid, rack, <span class="hljs-keyword">status</span>, copy_identifier) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'PROG-001-A'</span>), <span class="hljs-comment">-- The Art of Programming</span>
+(<span class="hljs-number">1</span>, <span class="hljs-number">101</span>, <span class="hljs-string">'ISSUED'</span>, <span class="hljs-string">'PROG-001-B'</span>),
+(<span class="hljs-number">1</span>, <span class="hljs-number">102</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'PROG-001-C'</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-number">201</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'HIST-002-A'</span>), <span class="hljs-comment">-- Indian History Unveiled</span>
+(<span class="hljs-number">2</span>, <span class="hljs-number">201</span>, <span class="hljs-string">'ISSUED'</span>, <span class="hljs-string">'HIST-002-B'</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-number">301</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'HEAL-003-A'</span>), <span class="hljs-comment">-- Yoga for Inner Peace</span>
+(<span class="hljs-number">3</span>, <span class="hljs-number">301</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'HEAL-003-B'</span>),
+(<span class="hljs-number">3</span>, <span class="hljs-number">302</span>, <span class="hljs-string">'ISSUED'</span>, <span class="hljs-string">'HEAL-003-C'</span>),
+(<span class="hljs-number">4</span>, <span class="hljs-number">103</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'ALGO-004-A'</span>), <span class="hljs-comment">-- Algorithms Illustrated</span>
+(<span class="hljs-number">4</span>, <span class="hljs-number">103</span>, <span class="hljs-string">'ISSUED'</span>, <span class="hljs-string">'ALGO-004-B'</span>),
+(<span class="hljs-number">4</span>, <span class="hljs-number">103</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'ALGO-004-C'</span>),
+(<span class="hljs-number">5</span>, <span class="hljs-number">303</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'SPIR-005-A'</span>), <span class="hljs-comment">-- Spiritual Wisdom of India</span>
+(<span class="hljs-number">6</span>, <span class="hljs-number">104</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'DS-006-A'</span>), <span class="hljs-comment">-- Data Science Handbook</span>
+(<span class="hljs-number">7</span>, <span class="hljs-number">202</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'ARCH-007-A'</span>), <span class="hljs-comment">-- Marvels of Indian Architecture</span>
+(<span class="hljs-number">8</span>, <span class="hljs-number">105</span>, <span class="hljs-string">'ISSUED'</span>, <span class="hljs-string">'ML-008-A'</span>), <span class="hljs-comment">-- Introduction to Machine Learning</span>
+(<span class="hljs-number">8</span>, <span class="hljs-number">105</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'ML-008-B'</span>),
+(<span class="hljs-number">9</span>, <span class="hljs-number">304</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'FIC-009-A'</span>), <span class="hljs-comment">-- The White Tiger</span>
+(<span class="hljs-number">10</span>, <span class="hljs-number">203</span>, <span class="hljs-string">'ISSUED'</span>, <span class="hljs-string">'MATH-010-A'</span>), <span class="hljs-comment">-- Mathematics for Engineers</span>
+(<span class="hljs-number">11</span>, <span class="hljs-number">305</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'MYTH-011-A'</span>), <span class="hljs-comment">-- Indian Mythology Tales</span>
+(<span class="hljs-number">12</span>, <span class="hljs-number">106</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'PY-012-A'</span>), <span class="hljs-comment">-- Python for Beginners</span>
+(<span class="hljs-number">12</span>, <span class="hljs-number">106</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'PY-012-B'</span>),
+(<span class="hljs-number">12</span>, <span class="hljs-number">107</span>, <span class="hljs-string">'ISSUED'</span>, <span class="hljs-string">'PY-012-C'</span>),
+(<span class="hljs-number">13</span>, <span class="hljs-number">204</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'PHY-013-A'</span>), <span class="hljs-comment">-- Fundamentals of Physics</span>
+(<span class="hljs-number">14</span>, <span class="hljs-number">306</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'LIT-014-A'</span>), <span class="hljs-comment">-- Great Indian Novels</span>
+(<span class="hljs-number">15</span>, <span class="hljs-number">205</span>, <span class="hljs-string">'AVAILABLE'</span>, <span class="hljs-string">'CHEM-015-A'</span>); <span class="hljs-comment">-- Basic Chemistry</span>
+
+
+<span class="hljs-comment">-- -----------------------------------------------------</span>
+<span class="hljs-comment">-- Payments Data (Membership fees and fines)</span>
+<span class="hljs-comment">-- memberid 2 (Rahul Singh) is active, memberid 3 (Anjali Gupta) is unpaid, memberid 6 (Suresh Patil) is inactive/unpaid</span>
+<span class="hljs-comment">-- -----------------------------------------------------</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Payments (memberid, amount, <span class="hljs-keyword">type</span>, payment_date, due_date) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">2</span>, <span class="hljs-number">500.00</span>, <span class="hljs-string">'MEMBERSHIP_FEE'</span>, <span class="hljs-string">'2024-08-01 12:30:00'</span>, <span class="hljs-string">'2024-09-01 00:00:00'</span>), <span class="hljs-comment">-- Rahul: August fee</span>
+(<span class="hljs-number">4</span>, <span class="hljs-number">500.00</span>, <span class="hljs-string">'MEMBERSHIP_FEE'</span>, <span class="hljs-string">'2024-07-20 09:00:00'</span>, <span class="hljs-string">'2024-08-20 00:00:00'</span>), <span class="hljs-comment">-- Vikram: July fee</span>
+(<span class="hljs-number">5</span>, <span class="hljs-number">500.00</span>, <span class="hljs-string">'MEMBERSHIP_FEE'</span>, <span class="hljs-string">'2024-08-10 14:00:00'</span>, <span class="hljs-string">'2024-09-10 00:00:00'</span>), <span class="hljs-comment">-- Deepa: August fee</span>
+(<span class="hljs-number">7</span>, <span class="hljs-number">500.00</span>, <span class="hljs-string">'MEMBERSHIP_FEE'</span>, <span class="hljs-string">'2024-08-05 10:00:00'</span>, <span class="hljs-string">'2024-09-05 00:00:00'</span>), <span class="hljs-comment">-- Meena: August fee</span>
+(<span class="hljs-number">8</span>, <span class="hljs-number">500.00</span>, <span class="hljs-string">'MEMBERSHIP_FEE'</span>, <span class="hljs-string">'2024-07-25 11:00:00'</span>, <span class="hljs-string">'2024-08-25 00:00:00'</span>), <span class="hljs-comment">-- Rajesh: July fee</span>
+
+<span class="hljs-comment">-- Past payments</span>
+(<span class="hljs-number">2</span>, <span class="hljs-number">500.00</span>, <span class="hljs-string">'MEMBERSHIP_FEE'</span>, <span class="hljs-string">'2024-07-01 12:00:00'</span>, <span class="hljs-string">'2024-08-01 00:00:00'</span>),
+(<span class="hljs-number">2</span>, <span class="hljs-number">500.00</span>, <span class="hljs-string">'MEMBERSHIP_FEE'</span>, <span class="hljs-string">'2024-06-01 12:00:00'</span>, <span class="hljs-string">'2024-07-01 00:00:00'</span>),
+(<span class="hljs-number">4</span>, <span class="hljs-number">500.00</span>, <span class="hljs-string">'MEMBERSHIP_FEE'</span>, <span class="hljs-string">'2024-06-20 09:00:00'</span>, <span class="hljs-string">'2024-07-20 00:00:00'</span>),
+(<span class="hljs-number">5</span>, <span class="hljs-number">500.00</span>, <span class="hljs-string">'MEMBERSHIP_FEE'</span>, <span class="hljs-string">'2024-07-10 14:00:00'</span>, <span class="hljs-string">'2024-08-10 00:00:00'</span>),
+(<span class="hljs-number">7</span>, <span class="hljs-number">500.00</span>, <span class="hljs-string">'MEMBERSHIP_FEE'</span>, <span class="hljs-string">'2024-07-05 10:00:00'</span>, <span class="hljs-string">'2024-08-05 00:00:00'</span>);
+
+<span class="hljs-comment">-- Fine Payments</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Payments (memberid, amount, <span class="hljs-keyword">type</span>, payment_date) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">4</span>, <span class="hljs-number">15.00</span>, <span class="hljs-string">'FINE_PAYMENT'</span>, <span class="hljs-string">'2024-07-28 15:00:00'</span>), <span class="hljs-comment">-- Vikram paid a fine</span>
+(<span class="hljs-number">8</span>, <span class="hljs-number">10.00</span>, <span class="hljs-string">'FINE_PAYMENT'</span>, <span class="hljs-string">'2024-08-01 16:00:00'</span>); <span class="hljs-comment">-- Rajesh paid a fine</span>
+
+
+<span class="hljs-comment">-- -----------------------------------------------------</span>
+<span class="hljs-comment">-- IssuerRecord (Borrowing Transactions) Data</span>
+<span class="hljs-comment">-- copyid values need to match actual Copies.id.</span>
+<span class="hljs-comment">-- memberid values need to match actual Members.id.</span>
+<span class="hljs-comment">-- Current date for 'today' is assumed to be 2024-08-03</span>
+<span class="hljs-comment">-- -----------------------------------------------------</span>
+
+<span class="hljs-comment">-- Current Borrowed Books (status: ISSUED in Copies table)</span>
+<span class="hljs-comment">-- Rahul Singh (memberid 2)</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> IssuerRecord (copyid, memberid, issue_date, due_date, return_date, fine_amount, <span class="hljs-keyword">status</span>) <span class="hljs-keyword">VALUES</span>
+((<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">FROM</span> Copies <span class="hljs-keyword">WHERE</span> copy_identifier = <span class="hljs-string">'PROG-001-B'</span>), <span class="hljs-number">2</span>, <span class="hljs-string">'2024-07-30 10:00:00'</span>, <span class="hljs-string">'2024-08-06 10:00:00'</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0.00</span>, <span class="hljs-string">'BORROWED'</span>), <span class="hljs-comment">-- Due Aug 6, 2024 (good standing)</span>
+((<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">FROM</span> Copies <span class="hljs-keyword">WHERE</span> copy_identifier = <span class="hljs-string">'HIST-002-B'</span>), <span class="hljs-number">2</span>, <span class="hljs-string">'2024-08-01 11:00:00'</span>, <span class="hljs-string">'2024-08-08 11:00:00'</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0.00</span>, <span class="hljs-string">'BORROWED'</span>); <span class="hljs-comment">-- Due Aug 8, 2024 (good standing)</span>
+
+<span class="hljs-comment">-- Deepa Reddy (memberid 5) - due soon</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> IssuerRecord (copyid, memberid, issue_date, due_date, return_date, fine_amount, <span class="hljs-keyword">status</span>) <span class="hljs-keyword">VALUES</span>
+((<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">FROM</span> Copies <span class="hljs-keyword">WHERE</span> copy_identifier = <span class="hljs-string">'HEAL-003-C'</span>), <span class="hljs-number">5</span>, <span class="hljs-string">'2024-07-28 14:00:00'</span>, <span class="hljs-string">'2024-08-04 14:00:00'</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0.00</span>, <span class="hljs-string">'BORROWED'</span>); <span class="hljs-comment">-- Due Aug 4, 2024 (due soon - 1 day left)</span>
+
+<span class="hljs-comment">-- Vikram Kumar (memberid 4) - overdue, incurred fine</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> IssuerRecord (copyid, memberid, issue_date, due_date, return_date, fine_amount, <span class="hljs-keyword">status</span>) <span class="hljs-keyword">VALUES</span>
+((<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">FROM</span> Copies <span class="hljs-keyword">WHERE</span> copy_identifier = <span class="hljs-string">'ALGO-004-B'</span>), <span class="hljs-number">4</span>, <span class="hljs-string">'2024-07-20 09:00:00'</span>, <span class="hljs-string">'2024-07-27 09:00:00'</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">35.00</span>, <span class="hljs-string">'OVERDUE'</span>); <span class="hljs-comment">-- Overdue by 7 days (Aug 3 vs Jul 27), fine 35.00</span>
+
+<span class="hljs-comment">-- Rajesh Kumar (memberid 8) - another currently borrowed</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> IssuerRecord (copyid, memberid, issue_date, due_date, return_date, fine_amount, <span class="hljs-keyword">status</span>) <span class="hljs-keyword">VALUES</span>
+((<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">FROM</span> Copies <span class="hljs-keyword">WHERE</span> copy_identifier = <span class="hljs-string">'ML-008-A'</span>), <span class="hljs-number">8</span>, <span class="hljs-string">'2024-08-02 10:00:00'</span>, <span class="hljs-string">'2024-08-09 10:00:00'</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0.00</span>, <span class="hljs-string">'BORROWED'</span>); <span class="hljs-comment">-- Due Aug 9, 2024</span>
+
+<span class="hljs-comment">-- Returned Books (past transactions)</span>
+<span class="hljs-comment">-- Rahul Singh (memberid 2)</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> IssuerRecord (copyid, memberid, issue_date, due_date, return_date, fine_amount, <span class="hljs-keyword">status</span>) <span class="hljs-keyword">VALUES</span>
+((<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">FROM</span> Copies <span class="hljs-keyword">WHERE</span> copy_identifier = <span class="hljs-string">'PROG-001-C'</span>), <span class="hljs-number">2</span>, <span class="hljs-string">'2024-07-10 10:00:00'</span>, <span class="hljs-string">'2024-07-17 10:00:00'</span>, <span class="hljs-string">'2024-07-17 10:30:00'</span>, <span class="hljs-number">0.00</span>, <span class="hljs-string">'RETURNED'</span>),
+((<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">FROM</span> Copies <span class="hljs-keyword">WHERE</span> copy_identifier = <span class="hljs-string">'PROG-001-A'</span>), <span class="hljs-number">2</span>, <span class="hljs-string">'2024-06-20 10:00:00'</span>, <span class="hljs-string">'2024-06-27 10:00:00'</span>, <span class="hljs-string">'2024-06-29 11:00:00'</span>, <span class="hljs-number">10.00</span>, <span class="hljs-string">'RETURNED'</span>); <span class="hljs-comment">-- Returned 2 days late, paid fine</span>
+
+<span class="hljs-comment">-- Vikram Kumar (memberid 4)</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> IssuerRecord (copyid, memberid, issue_date, due_date, return_date, fine_amount, <span class="hljs-keyword">status</span>) <span class="hljs-keyword">VALUES</span>
+((<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">FROM</span> Copies <span class="hljs-keyword">WHERE</span> copy_identifier = <span class="hljs-string">'DS-006-A'</span>), <span class="hljs-number">4</span>, <span class="hljs-string">'2024-07-05 10:00:00'</span>, <span class="hljs-string">'2024-07-12 10:00:00'</span>, <span class="hljs-string">'2024-07-12 10:00:00'</span>, <span class="hljs-number">0.00</span>, <span class="hljs-string">'RETURNED'</span>);
+
+<span class="hljs-comment">-- Rajesh Kumar (memberid 8)</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> IssuerRecord (copyid, memberid, issue_date, due_date, return_date, fine_amount, <span class="hljs-keyword">status</span>) <span class="hljs-keyword">VALUES</span>
+((<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">FROM</span> Copies <span class="hljs-keyword">WHERE</span> copy_identifier = <span class="hljs-string">'PY-012-C'</span>), <span class="hljs-number">8</span>, <span class="hljs-string">'2024-07-15 10:00:00'</span>, <span class="hljs-string">'2024-07-22 10:00:00'</span>, <span class="hljs-string">'2024-07-24 11:00:00'</span>, <span class="hljs-number">10.00</span>, <span class="hljs-string">'RETURNED'</span>); <span class="hljs-comment">-- Returned 2 days late, paid fine</span>
+
+<span class="hljs-comment">-- Anjali Gupta (memberid 3) - Has no active borrowings as unpaid.</span>
+<span class="hljs-comment">-- Suresh Patil (memberid 6) - Has no active borrowings as unpaid.</span>
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-string">'Dummy data inserted successfully!'</span> <span class="hljs-keyword">AS</span> <span class="hljs-keyword">Status</span>;
+
+</div></code></pre>
+
+</body>
+</html>
